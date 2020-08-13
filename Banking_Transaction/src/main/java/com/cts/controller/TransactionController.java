@@ -22,6 +22,7 @@ import io.swagger.annotations.ApiOperation;
 
 
 @RestController
+@RequestMapping
 public class TransactionController {
 	
 	@Autowired
@@ -46,21 +47,21 @@ public class TransactionController {
 	@ApiOperation(value = "Find Transactions from the Transaction List",
 			notes="Use transaction Id for Searching",
 			response = Transaction.class)
-	@GetMapping("/transaction/{id}")
-	public Transaction getById(@PathVariable(value = "id") Long id) {
-	    return service.getById(id)
-	            .orElseThrow(() -> new TransactionException("Transact", "id", id));
+	@GetMapping("/transaction/{fid}")
+	public Transaction getById(@PathVariable(value = "fid") Long fid) {
+	    return service.getById(fid)
+	            .orElseThrow(() -> new TransactionException("Transact", "fid", fid));
 	}
 	
 	@ApiOperation(value = "Delete Transactions from List",
 			notes="Delete Existing transaction from the List",
 			response = Transaction.class)
 	@DeleteMapping("/transaction/{id}")
-	public ResponseEntity<?> deleteId(@PathVariable(value = "id") Long id) {
-		Transaction transact = service.getById(id)
-	            .orElseThrow(() -> new TransactionException("Transact", "id", id));
+	public ResponseEntity<?> deleteId(@PathVariable(value = "fid") Long fid) {
+		Transaction transact = service.getById(fid)
+	            .orElseThrow(() -> new TransactionException("Transact", "fid", fid));
 
-		service.deleteTransact(id);
+		service.deleteTransact(fid);
 
 	    return ResponseEntity.ok().build();
 	}

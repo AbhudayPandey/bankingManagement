@@ -27,15 +27,15 @@ import java.util.Date;
 @JsonIgnoreProperties(value = {"transactAt"}, 
         allowGetters = true)
 public class Transaction {
-	public Transaction(long l, double d) {
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	@ApiModelProperty(notes = "The Transaction's ID which is Unique")
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long fid;
+	
+	@ApiModelProperty(notes = "The Fund Name")
+    private String fundname;
+	
 	@ApiModelProperty(notes = "The Transaction's Amount")
     private Double amount;
 
@@ -44,6 +44,38 @@ public class Transaction {
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date transactAt;
+
+	public Long getFid() {
+		return fid;
+	}
+
+	public void setFid(Long fid) {
+		this.fid = fid;
+	}
+
+	public String getFundname() {
+		return fundname;
+	}
+
+	public void setFundname(String fundname) {
+		this.fundname = fundname;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public Date getTransactAt() {
+		return transactAt;
+	}
+
+	public void setTransactAt(Date transactAt) {
+		this.transactAt = transactAt;
+	}
 
 	
     
